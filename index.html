@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Website</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Background Slideshow */
+    .slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .slideshow img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;  
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slideshow img.active {
+      opacity: 1;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    .menu-btn {
+      font-size: 32px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 12px;
+      border-radius: 6px;
+      color: white;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+      min-width: 150px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .menu a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Club Info */
+    .content {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      width: 100%;
+    }
+
+    .content h1 {
+      font-size: 70px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      animation: colorChange 15s infinite;
+    }
+
+    .content p {
+      font-size: 22px;
+    }
+
+    /* Color changing animation */
+    @keyframes colorChange {
+      0%   { color: #FFD700; }
+      20%  { color: #FF4500; }
+      40%  { color: #1E90FF; }
+      60%  { color: #32CD32; }
+      80%  { color: #FF69B4; }
+      100% { color: #FFD700; }
+    }
+
+    /* Bottom Buttons Layout */
+    .bottom-buttons {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .bottom-buttons a {
+      flex: 1;
+      margin: 0 10px;
+      padding: 14px 24px;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .bottom-buttons a:nth-child(1) { background: #e63946; }
+    .bottom-buttons a:nth-child(2) { background: #457b9d; }
+    .bottom-buttons a:nth-child(3) { background: #2a9d8f; }
+
+    .bottom-buttons a:hover { opacity: 0.8; }
+
+    h6 {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    h6 a {
+      color: white;
+      text-decoration: none;
+    }
+
+    h6 a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Slideshow -->
+  <div class="slideshow">
+    <img src="image1.jpg" class="active" alt="Club Image 1">
+    <img src="image2.jpg" alt="Club Image 2">
+    <img src="image3.jpg" alt="Club Image 3">
+  </div>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <span class="menu-btn">☰</span>
+    <div class="menu">
+      <a href="comity.html">পূজা কমিটি</a>
+	<a href="comity.html">পূজা পরিক্রমা</a>
+      <a href="feature.html">ভবিষ্যৎ পরিকল্পনায়</a>
+      <a id="memberPortal">সদস্য পোর্টাল</a>
+      <a href="#">খেলাধূলা ও সাংস্কৃতিক অনুষ্ঠান</a>
+      <a href="contact.html">যোগাযোগ</a>
+    </div>
+  </div>
+
+  <!-- Club Info -->
+  <div class="content">
+    <h1>বাণী মন্দির ক্লাব Bani Mondir Club</h1>
+    <p>হিলচিয়া, বাজিতপুর, কিশোরগঞ্জ Hilchia, Bajitpur, Kishoreganj <br>ঢাকা বাংলাদেশ Dhaka , Bangladesh.</p>
+  </div>
+
+  <!-- Bottom Buttons -->
+  <div class="bottom-buttons">
+    <a href="linkA.html">Saraswati Puja ✨ সরস্বতীপূজা</a>
+    <a href="linkB.html">Durga Puja ✨ দূর্গা পূজা</a>
+    <a href="linkC.html">Laxmi Puja ✨ লক্ষী পূজা</a>
+  </div>
+
+  <h6><a href="https://erpaul.tech/">This project was made by Snehashish Paul</a></h6>
+
+  <script>
+    // Slideshow Script
+    const slides = document.querySelectorAll('.slideshow img');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 10000);
+
+    // Function to setup menu button
+    function setupMenu() {
+      const menuBtn = document.querySelector('.menu-btn');
+      const menu = document.querySelector('.menu');
+
+      // Remove previous listeners
+      const newMenuBtn = menuBtn.cloneNode(true);
+      menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
+
+      // Add click listener
+      newMenuBtn.addEventListener('click', () => {
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+      });
+    }
+
+    // Run on first load
+    setupMenu();
+
+    // Re-run when returning to the page (back button)
+    window.addEventListener('pageshow', () => {
+      setupMenu();
+    });
+
+    // Member Portal Access
+    document.getElementById("memberPortal").addEventListener("click", () => {
+      const code = prompt("🔒 Enter Access Code:");
+      if(code === "BMC333"){
+        window.location.href = "member.html";
+      } else if (code !== null) {
+        alert("❌ Wrong Code! Access Denied.");
+      }
+    });
+  </script>
+</body>
+</html>
